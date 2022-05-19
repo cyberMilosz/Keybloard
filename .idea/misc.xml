@@ -11,8 +11,10 @@
         <entry key="..\:/Users/milos/AndroidStudioProjects/Keybloard/app/src/main/res/drawable/ic_launcher_background.xml" value="0.34739583333333335" />
         <entry key="..\:/Users/milos/AndroidStudioProjects/Keybloard/app/src/main/res/drawable/keydesc.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/milos/AndroidStudioProjects/Keybloard/app/src/main/res/drawable/withsecure_logo.xml" value="0.6666666666666666" />
+        <entry key="..\:/Users/milos/AndroidStudioProjects/Keybloard/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/milos/AndroidStudioProjects/Keybloard/app/src/main/res/layout/keyboard_preview.xml" value="0.33125" />
         <entry key="..\:/Users/milos/AndroidStudioProjects/Keybloard/app/src/main/res/layout/keyboard_view.xml" value="0.30570652173913043" />
+        <entry key="..\:/Users/milos/AndroidStudioProjects/Keybloard/app/src/main/res/xml/root_preferences.xml" value="0.1" />
       </map>
     </option>
   </component>

